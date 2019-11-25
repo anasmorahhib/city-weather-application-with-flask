@@ -1,0 +1,65 @@
+{% include 'header.html' %}
+<div class="container-fluid">
+<div>
+
+	<h1>Morocco Weather.</h1>
+	<h2>
+		<span class="badge badge-secondary"><i class="city">Marrakech</i></span>
+	</h2>
+	<h3 class="about">About the city - Wikipedia</h3>
+	<p class="city_info"> {{ city_info }}</p>
+	<br />
+	<br />
+	<div class="main">
+		<form type="POST" role="form">
+		<div class="input-group mb-3">
+		<div class="input-group-prepend">
+	    	<label class="input-group-text" for="inputGroupSelect01">Choose City</label>
+	 	</div>
+
+		<select class="custom-select" name="city" id="city" >
+			<option>Marrakech</option>
+			<option>Casablanca</option>
+			<option>El Jadida</option>
+			<option>Safie</option>
+		</select>
+		</div>
+		</form>
+	</div>
+	<div class="progress1 spinner-border text-warning" role="status" style="display: none !important;">
+	  <span   class="sr-only">Loading...</span>
+	</div>
+	<p class="responce"> <span class="temperature">{{ temperature }}</span><span class="degree">°</span></p>
+</div>
+</div>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+$('#city').change(function get_weather (){
+		var city = $('#city').val();
+		$('.responce').hide();
+		$('.progress1').show();
+		$.ajax({
+		    type: 'POST',
+		    url: '/get-weather',
+		    data: JSON.stringify({'city': city}),
+		    contentType: 'application/json',
+		    success: function (response_data) {
+		    	console.log(response_data.temperature)
+		    	temperature = response_data.temperature
+		    	city_info = response_data.wiki
+		       $('i.city').text($('#city').val())
+		       $('.temperature').text(temperature)
+		       $('.city_info').text(city_info)
+		       $('.progress1').hide();
+		       $('.responce').show();
+		    }   
+		});
+});
+</script>

@@ -1,0 +1,36 @@
+body{
+	background: #7900ff;
+	color: #fff;
+    text-align: center;
+    margin-top: 10%;
+}
+
+.temperature {
+	color: #ffc107;
+    font-weight: bold;
+    font-size: 62px;
+}
+
+.degree{
+	color: #ffc107;
+    font-weight: bold;
+    font-size: 62px;
+}
+
+.main {
+	width: 34rem;
+    text-align: center;
+    margin: auto;
+}
+
+.city_info {
+	width: 582px;
+    margin: auto;
+}
+
+.about {
+    width: 402px;
+    margin: auto;
+    margin-top: 67px;
+    margin-bottom: 20px;
+}

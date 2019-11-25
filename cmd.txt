@@ -1,0 +1,3 @@
+# To run flask
+set FLASK_APP=hello.py
+flask run
